@@ -1,0 +1,40 @@
+// The SWC docs are not very well documented.
+{
+    "$schema": "https://json.schemastore.org/swcrc",
+    "inlineSourcesContent": false,
+    "sourceMaps": false, // Maybe a bug, base64 inline source maps remain either way.
+    "jsc": {
+        "parser": {
+            "syntax": "typescript",
+            "tsx": true,
+            "dynamicImport": true,
+            "decorators": false
+        },
+        "externalHelpers": true,
+        "transform": {
+            "react": {
+                "runtime": "automatic"
+            }
+        }
+    },
+    "module": {
+        "type": "es6",
+        "strict": false,
+        "strictMode": false,
+        "lazy": false,
+        "noInterop": false, // Should always be false "In cases where the auto-unwrapping of default is not needed, you can set the `noInterop` option to true"
+        "importInterop": "swc" // Default if `noInterop` is true
+    },
+    "isModule": "unknown", // "unknown" treats modules which have not been setup with ESM (like `react`) to be treated as a script and not a module - so they can still be consumed SWC.
+    "env": {
+        "targets": {
+            "chrome": "38"
+        },
+        "loose": true,
+        "mode": "entry", // `entry` expects an "import 'core-js'" early in the codebase, which it then breaks down into needed parts.
+        "coreJs": "3.35.1",
+        "shippedProposals": true,
+        "dynamicImport": true,
+        "forceAllTransforms": true
+    }
+}
